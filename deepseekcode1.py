@@ -93,10 +93,10 @@ async def photoai(url, prompt):
             model="meta-llama/Llama-3.2-90B-Vision-Instruct",
             messages=[
                 {'role': 'system',
-                 'content': 'четко опиши что видишь на фото'},
-                {"role": "user","content": [{"type": "image_url", "image_url": {"url": url}}],}
+                 'content': 'Опиши фотографию на русском языке'},
+                {"role": "user","content": [{"type": "image_url", "image_url": {"url": url}},],}
             ],
-            temperature=0.1,
+            temperature=0,
             )
         )
         text = response.choices[0].message.content
