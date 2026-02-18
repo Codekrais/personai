@@ -90,25 +90,17 @@ async def photoai(url, prompt):
         response = await loop.run_in_executor(
             None,
             lambda: client.chat.completions.create(
-            model="Qwen/Qwen2.5-VL-32B-Instruct",
+            model="meta-llama/Llama-3.2-90B-Vision-Instruct",
             messages=[
                 {'role': 'system',
                  'content': 'четко опиши что видишь на фото'},
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "image_url",
-                            "image_url": {"url": url}
-                        },
-                    ],
-                }
+                {"role": "user","content": [{"type": "image_url", "image_url": {"url": url}}],}
             ],
             temperature=0.1,
             )
         )
         text = response.choices[0].message.content
-        pprint(f'[{current_time()}] Принятое сообщение от QWEN\n{text}\n')
+        pprint(f'[{current_time()}] Принятое сообщение от LLAMA\n{text}\n')
         print('')
 
         client = openai.OpenAI(

@@ -20,7 +20,7 @@ async def premes(message):
 @bot.message_handler(commands=['log'])
 async def ren(message):
     try:
-        if message.from_user.id == admin_id:
+        if str(message.from_user.id) == admin_id:
             await bot.send_document(message.chat.id, open('datebase.json', 'rb'), caption=f'''Лог от [{current_time()}]:
 
 Текущий api-ключ: {index_api_key}
